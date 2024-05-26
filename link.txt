@@ -1,0 +1,4 @@
+https://imagingsolution.net/program/python/tkinter/display_opencv_video_canvas/
+https://qiita.com/mizoe@github/items/bc56441e80b3ccd5b2a4
+https://natu-ym.com/python-canvas-move/
+https://mori-memo.hateblo.jp/entry/2022/02/02/000500
