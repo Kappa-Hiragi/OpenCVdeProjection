@@ -1,9 +1,11 @@
 import tkinter as tk
 from tkinter import filedialog
 from PIL import Image, ImageTk, ImageOps  # 画像データ用
-
 import cv2
+import numpy as np
 
+red = (28, 187, 255)  # 枠線の色
+before = None  # 前回の画像を保存する変数
 class Application(tk.Frame):
     def __init__(self, master = None):
         super().__init__(master)
@@ -40,9 +42,25 @@ class Application(tk.Frame):
         # フレーム画像の取得
         ret, frame = self.capture.read()
         # BGR→RGB変換
-        cv_image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-        # NumPyのndarrayからPillowのImageへ変換
-        pil_image = Image.fromarray(cv_image)
+        #cv_image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+        # 白黒画像に変換
+        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        # 現在のフレームと移動平均との差を計算
+        cv2.accumulateWeighted(gray, before, 0.5)
+        frameDelta = cv2.absdiff(gray, cv2.convertScaleAbs(before))
+        # frameDeltaの画像を２値化
+        thresh = cv2.threshold(frameDelta, 3, 255, cv2.THRESH_BINARY)[1]
+        # 輪郭のデータを得る
+        contours = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)[0]
+
+        # 差分があった点を画面に描く
+        for target in contours:
+            x, y, w, h = cv2.boundingRect(target)
+            if w < 30:
+                continue  # 小さな変更点は無視
+            cv2.rectangle(frame, (x, y), (x + w, y + h), red, 2)
+            # NumPyのndarrayからPillowのImageへ変換
+            pil_image = Image.fromarray(frame)
 
         # キャンバスのサイズを取得
         canvas_width = self.canvas.winfo_width()
@@ -58,7 +76,7 @@ class Application(tk.Frame):
         self.canvas.delete("all")
         self.canvas.create_image(
                 canvas_width / 2,       # 画像表示位置(Canvasの中心)
-                canvas_height / 2, 
+                canvas_height / 2,
                 image=self.photo_image  # 表示画像データ
                 )
 
