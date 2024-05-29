@@ -1,0 +1,7 @@
+.venv作り忘れたのでリスト化
+numpy
+matplotlib
+opencv
+pygame
+tkinter
+
