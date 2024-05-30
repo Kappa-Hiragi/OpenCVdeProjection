@@ -1,13 +1,15 @@
 import sys
 import pygame
 from pygame.locals import *
-def main():
+def main(x,y):
     pygame.init()                                               # Pygameの初期化
     screen = pygame.display.set_mode((600, 500))                # 大きさ600*500の画面を生成
     pygame.display.set_caption("image")                         # タイトルバーに表示する文字
     logo = pygame.image.load("test.png")                     #　ペンギンの画像取得
     px=20
     py=50
+    px=x
+    py=y
     while (1):
         screen.fill((0,0,0))                                    # 画面全体を黒色に塗りつぶし
         if(px<600):

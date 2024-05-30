@@ -1,6 +1,6 @@
 import cv2
 import time
-
+import sample
 movie = cv2.VideoCapture(0)
 
 red = (28, 187, 255) # 枠線の色
@@ -31,9 +31,11 @@ while True:
     # 差分があった点を画面に描く
     for target in contours:
         x, y, w, h = cv2.boundingRect(target)
-        if w < 30: continue # 小さな変更点は無視
+        #if w < 30: continue # 小さな変更点は無視
+        if w < 200: continue
         cv2.rectangle(frame, (x, y), (x+w, y+h), red, 2)
-
+        #できるかなぁ
+        sample.main(x,y)
     #ウィンドウでの再生速度を元動画と合わせる
     time.sleep(1/fps)
     # ウィンドウで表示
