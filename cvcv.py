@@ -21,7 +21,7 @@ def main(x,y):
     px=x
     py=y
     screen.fill((255,255,255))
-    screen.blit(back_img,rect_back_img)
+    screen.blit(back_img,(rect_back_img))
     screen.blit(img1,(px,py))
     pygame.display.update()
 while True:
