@@ -17,6 +17,7 @@ img1 = pygame.image.load("test.png")
 def main(x,y):
     px=x
     py=y
+    screen.fill((0,0,0))
     screen.blit(img1,(px,py))
     pygame.display.update()
 while True:
