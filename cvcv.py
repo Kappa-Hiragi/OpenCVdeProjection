@@ -13,11 +13,15 @@ fps = int(movie.get(cv2.CAP_PROP_FPS)) #動画のFPSを取得
 pygame.init()
 screen = pygame.display.set_mode((2032, 1143),FULLSCREEN)
 pygame.display.set_caption("image")
+back_img = pygame.image.load("back.png")
+rect_back_img = back_img.get_rect()
 img1 = pygame.image.load("test.png")
+#movie_sample = cv2.VideoCapture("sample.mp4")
 def main(x,y):
     px=x
     py=y
-    screen.fill((0,0,0))
+    screen.fill((255,255,255))
+    screen.blit(back_img,rect_back_img)
     screen.blit(img1,(px,py))
     pygame.display.update()
 while True:

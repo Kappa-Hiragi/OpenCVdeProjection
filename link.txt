@@ -6,3 +6,5 @@ matplotlibとか使うやつら↑
 http://wheelchairtext.net/program/1575/
 pygame ゲームエンジン使いたくないのになんか使わざるを得ん感じ
 https://qiita.com/seri_13/items/53bea9a42a555b50bbf9
+
+https://qiita.com/meijin27/items/607d9940b8f3e3d8c0a4
