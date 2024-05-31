@@ -10,6 +10,7 @@ def main(x,y):
     py=50
     px=x
     py=y
+    """
     while (1):
         screen.fill((0,0,0))                                    # 画面全体を黒色に塗りつぶし
         if(px<600):
@@ -27,6 +28,8 @@ def main(x,y):
             if event.type == QUIT:                              # 閉じるボタンが押されたら終了
                 pygame.quit()                                   # Pygameの終了(画面閉じられる)
                 sys.exit()
-
+    """
+    screen.blit(logo,(px,py))                               # 左上(20,50)の配置に画像描画（表示）
+    pygame.display.update()
 if __name__ == "__main__":
     main()
