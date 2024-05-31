@@ -1,12 +1,24 @@
 import cv2
 import time
 import sample
+import sys
+import pygame
+from pygame.locals import *
 movie = cv2.VideoCapture(0)
 
 red = (28, 187, 255) # 枠線の色
 before = None # 前回の画像を保存する変数
 fps = int(movie.get(cv2.CAP_PROP_FPS)) #動画のFPSを取得
-
+#pygameの初期化
+pygame.init()
+screen = pygame.display.set_mode((2032, 1143),FULLSCREEN)
+pygame.display.set_caption("image")
+img1 = pygame.image.load("test.png")
+def main(x,y):
+    px=x
+    py=y
+    screen.blit(img1,(px,py))
+    pygame.display.update()
 while True:
     # 画像を取得
     ret, frame = movie.read()
@@ -35,7 +47,7 @@ while True:
         if w < 400: continue
         cv2.rectangle(frame, (x, y), (x+w, y+h), red, 2)
         #やってみる
-        sample.main(x,y)
+        main(x,y)
     #ウィンドウでの再生速度を元動画と合わせる
     time.sleep(1/fps)
     # ウィンドウで表示
