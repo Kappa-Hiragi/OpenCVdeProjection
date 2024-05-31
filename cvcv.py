@@ -32,14 +32,14 @@ while True:
     for target in contours:
         x, y, w, h = cv2.boundingRect(target)
         #if w < 30: continue # 小さな変更点は無視
-        if w < 200: continue
+        if w < 400: continue
         cv2.rectangle(frame, (x, y), (x+w, y+h), red, 2)
-        #できるかなぁ
+        #やってみる
         sample.main(x,y)
     #ウィンドウでの再生速度を元動画と合わせる
     time.sleep(1/fps)
     # ウィンドウで表示
-    cv2.imshow('target_frame', frame)
+    #cv2.imshow('target_frame', frame)
     # Enterキーが押されたらループを抜ける
     if cv2.waitKey(1) == 13: break
 
