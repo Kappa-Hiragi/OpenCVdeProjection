@@ -50,11 +50,11 @@ while True:
         #やってみる
         main(x,y)
     #ウィンドウでの再生速度を元動画と合わせる
-    time.sleep(1/fps)
+        time.sleep(1/fps)
     # ウィンドウで表示
     #cv2.imshow('target_frame', frame)
     # Enterキーが押されたらループを抜ける
-    if cv2.waitKey(1) == 13: break
+        if cv2.waitKey(1) == 13: break
 
 movie.release()
 cv2.destroyAllWindows() # ウィンドウを破棄
